@@ -1,0 +1,11 @@
+List Concatenation
+Write a function which takes two lists and concatenates them.
+
+Notice that simply calling (cons a b) would not work because it will create a deep list. Do not call the builtin procedure append, since it does the same thing as list-concat should do.
+
+(define (list-concat a b)
+    (define (list-concat a b) (if (null? a) b (cons (car a) (list-concat (cdr a) b)))
+)
+
+(expect (list-concat '(1 2 3) '(2 3 4)) (1 2 3 2 3 4))
+(expect (list-concat '(3) '(2 1 0)) (3 2 1 0))

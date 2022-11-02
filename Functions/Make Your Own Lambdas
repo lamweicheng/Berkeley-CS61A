@@ -1,0 +1,30 @@
+Q6: Make Your Own Lambdas
+For each of the following expressions, write functions f1, f2, f3, and f4 such that the evaluation of each expression succeeds, without causing an error. Be sure to use lambdas in your function definition instead of nested def statements. Each function should have a one line solution.
+
+def f1():
+    """
+    >>> f1()
+    3
+    """
+    return 3
+
+def f2():
+    """
+    >>> f2()()
+    3
+    """
+    return lambda: 3
+
+def f3():
+    """
+    >>> f3()(3)
+    3
+    """
+    return lambda x: x
+
+def f4():
+    """
+    >>> f4()()(3)()
+    3
+    """
+    return lambda: lambda x: lambda: x

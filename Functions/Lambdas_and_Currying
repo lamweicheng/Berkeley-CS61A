@@ -1,0 +1,23 @@
+Q3: Lambdas and Currying
+Write a function lambda_curry2 that will curry any two argument function using lambdas.
+
+Your solution to this problem should only be one line. You can try first writing a solution without the restriction, and then rewriting it into one line after.
+
+If the syntax check isn't passing: Make sure you've removed the line containing "***YOUR CODE HERE***" so that it doesn't get treated as part of the function for the syntax check.
+
+def lambda_curry2(func):
+    """
+    Returns a Curried version of a two-argument function FUNC.
+    >>> from operator import add, mul, mod
+    >>> curried_add = lambda_curry2(add)
+    >>> add_three = curried_add(3)
+    >>> add_three(5)
+    8
+    >>> curried_mul = lambda_curry2(mul)
+    >>> mul_5 = curried_mul(5)
+    >>> mul_5(42)
+    210
+    >>> lambda_curry2(mod)(123)(10)
+    3
+    """
+    return lambda arg1: lambda arg2: func(arg1, arg2)

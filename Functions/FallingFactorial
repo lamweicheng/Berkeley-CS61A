@@ -1,0 +1,20 @@
+Q5: Falling Factorial
+Let's write a function falling, which is a "falling" factorial that takes two arguments, n and k, and returns the product of k consecutive numbers, starting from n and working downwards. When k is 0, the function should return 1.
+
+def falling(n, k):
+    """Compute the falling factorial of n to depth k.
+
+    >>> falling(6, 3)  # 6 * 5 * 4
+    120
+    >>> falling(4, 3)  # 4 * 3 * 2
+    24
+    >>> falling(4, 1)  # 4
+    4
+    >>> falling(4, 0)
+    1
+    """
+    total, stop = 1, n-k
+    while n > stop:
+        total, n = total*n, n-1
+    return total
+  

@@ -1,0 +1,22 @@
+Q1: A Plus Abs B
+Python's operator module defines binary functions for Python's intrinsic arithmetic operators. For example, calling operator.add(2,3) is equivalent to calling the expression 2 + 3; both will return 5.
+
+Note that when the operator module is imported into the namespace, like at the top of hw01.py, you can just call add(2,3) instead of operator.add(2,3).
+
+def a_plus_abs_b(a, b):
+    """Return a+abs(b), but without calling abs.
+
+    >>> a_plus_abs_b(2, 3)
+    5
+    >>> a_plus_abs_b(2, -3)
+    5
+    >>> a_plus_abs_b(-1, 4)
+    3
+    >>> a_plus_abs_b(-1, -4)
+    3
+    """
+    if b < 0:
+        f = sub
+    else:
+        f = add
+    return f(a, b)

@@ -1,0 +1,12 @@
+Q4: Apply Twice
+Using make_repeater define a function apply_twice that takes a function of one argument as an argument and returns a function that applies the original function twice. For example, if inc is a function that returns 1 more than its argument, then double(inc) should be a function that returns two more:
+
+def apply_twice(func):
+    """ Return a function that applies func twice.
+
+    func -- a function that takes one argument
+
+    >>> apply_twice(square)(2)
+    16
+    """
+    return make_repeater(func, 2)

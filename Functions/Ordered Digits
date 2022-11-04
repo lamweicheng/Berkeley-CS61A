@@ -1,0 +1,37 @@
+Q1: Ordered Digits
+Implement the function ordered_digits, which takes as input a positive integer and returns True if its digits, read left to right, are in non-decreasing order, and False otherwise. For example, the digits of 5, 11, 127, 1357 are ordered, but not those of 21 or 1375.
+
+Note: You can solve this with either iteration or recursion. We recommend trying both for practice purposes but you will credit for either one.
+
+def ordered_digits(x):
+    """Return True if the (base 10) digits of X>0 are in non-decreasing
+    order, and False otherwise.
+
+    >>> ordered_digits(5)
+    True
+    >>> ordered_digits(11)
+    True
+    >>> ordered_digits(127)
+    True
+    >>> ordered_digits(1357)
+    True
+    >>> ordered_digits(21)
+    False
+    >>> result = ordered_digits(1375) # Return, don't print
+    >>> result
+    False
+
+
+    >>> cases = [(1, True), (9, True), (10, False), (11, True), (32, False),
+    ...          (23, True), (99, True), (111, True), (122, True), (223, True),
+    ...          (232, False), (999, True),
+    ...          (13334566666889, True), (987654321, False)]
+    >>> [ordered_digits(s) == t for s, t in cases].count(False)
+    0
+    """
+    last = x % 10
+    x = x // 10
+    while x > 0 and last >= x % 10:
+        last = x % 10
+        x = x // 10
+    return x == 0

@@ -1,0 +1,52 @@
+Q5: It's Always a Good Prime
+Implement div_by_primes_under, which takes in an integer n and returns an n-divisibility checker. An n-divisibility-checker is a function that takes in an integer k and returns whether k is divisible by any integers between 2 and n, inclusive. Equivalently, it returns whether k is divisible by any primes less than or equal to n.
+
+Review the Disc 01 is_prime problem for a reminder about prime numbers.
+
+You can also choose to do the no lambda version, which is the same problem, just with defining functions with def instead of lambda.
+
+Hint: If struggling, here is a partially filled out line for after the if statement:
+
+checker = (lambda f, i: lambda x: __________)(checker, i)
+def div_by_primes_under(n):
+    """
+    >>> div_by_primes_under(10)(11)
+    False
+    >>> div_by_primes_under(10)(121)
+    False
+    >>> div_by_primes_under(10)(12)
+    True
+    >>> div_by_primes_under(5)(1)
+    False
+    """
+    checker = lambda x: False
+    i = 2
+    while i <= n:
+        if not checker(i):
+            checker = (lambda f, i: lambda x: x % i == 0 or f(x))(checker, i)
+        i = i + 1
+    return checker
+
+def div_by_primes_under_no_lambda(n):
+    """
+    >>> div_by_primes_under_no_lambda(10)(11)
+    False
+    >>> div_by_primes_under_no_lambda(10)(121)
+    False
+    >>> div_by_primes_under_no_lambda(10)(12)
+    True
+    >>> div_by_primes_under_no_lambda(5)(1)
+    False
+    """
+    def checker(x):
+        return False
+    i = 2
+    while i <= n:
+        if not checker(i):
+            def outer(f, i):
+                def inner(x):
+                    return x % i == 0 or f(x)
+                return inner
+            checker = outer(checker, i)
+        i = i + 1
+    return checker

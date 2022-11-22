@@ -1,3 +1,4 @@
+
 from scheme_eval_apply import *
 from scheme_utils import *
 from scheme_classes import *
@@ -144,9 +145,9 @@ def do_if_form(expressions, env):
     """
     validate_form(expressions, 2, 3)
     if is_scheme_true(scheme_eval(expressions.first, env)):
-        return scheme_eval(expressions.rest.first, env)
+        return scheme_eval(expressions.rest.first, env, True)
     elif len(expressions) == 3:
-        return scheme_eval(expressions.rest.rest.first, env)
+        return scheme_eval(expressions.rest.rest.first, env, True)
 
     
 
@@ -170,20 +171,32 @@ def do_and_form(expressions, env):
     # ?2
 
     # BEGIN PROBLEM 12
-    if expressions is nil:  #to fulfill one of the doctest 
+    # if expressions is nil:  #to fulfill one of the doctest 
+    #     return True
+
+    # #recurse through every expression until it reaches the base case
+    # while expressions.rest is not nil:
+    #     exp = scheme_eval(expressions.first, env) 
+    #     if is_scheme_false(exp): #if that exp is False, then just return false
+    #         return exp
+    #     else: 
+    #         expressions = expressions.rest #recursion 
+
+    # return scheme_eval(expressions.first, env, True) #return the last expression of the and statement if every expression is right
+
+    if expressions is nil:   #to fulfill one of the doctest 
         return True
 
     #recurse through every expression until it reaches the base case
-    while expressions is not nil:
-        exp = scheme_eval(expressions.first, env) 
-        if is_scheme_false(exp): #if that exp is False, then just return false
-            return False
-        else: 
+    while expressions.rest is not nil:
+        exp = scheme_eval(expressions.first, env)
+
+        if is_scheme_false(exp):  #if that exp is False, then just return the exp
+            return exp
+        else:
             expressions = expressions.rest #recursion 
 
-    return exp #return the last expression of the and statement if every expression is right
-
-
+    return scheme_eval(expressions.first, env, True) #return the last expression of the and statement if every expression is right
     # END PROBLEM 12
 
 
@@ -205,16 +218,19 @@ def do_or_form(expressions, env):
 
     # (1 or 3)
     # ?1 
-        
+   
+    if expressions is nil:
+        return False
 
-    while expressions is not nil:
+    while expressions.rest is not nil:
         first_exp = scheme_eval(expressions.first, env)
-        if is_scheme_true(first_exp):
+
+        if is_scheme_true(first_exp): #if that exp is True, then just return that exp
             return first_exp
-        else: 
+        else:
             expressions = expressions.rest
 
-    return False
+    return scheme_eval(expressions.first, env, True) #return the last expression of the and statement if every expression is right
 
     # END PROBLEM 12
 

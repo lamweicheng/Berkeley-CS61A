@@ -33,13 +33,6 @@ class Frame:
 
         # END PROBLEM 1
 
-        #frame = Frame(self)
-        #while formals is not nil:
-        #    frame.define(formals.first, vals.first)
-        #    formals = formals.rest
-        #    vals = vals.rest
-        #return frame
-
     def lookup(self, symbol):
         """Return the value bound to SYMBOL. Errors if SYMBOL is not found."""
         # BEGIN PROBLEM 1
@@ -74,7 +67,7 @@ class Frame:
         newFrameInstance = Frame(self)
 
         while formals is not nil:
-            newFrameInstance.define (formals.first, vals.first)
+            newFrameInstance.define(formals.first, vals.first)
             formals = formals.rest 
             vals = vals.rest
         return newFrameInstance

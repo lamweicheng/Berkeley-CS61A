@@ -5,21 +5,53 @@
 
 ;; Problem 15
 ;; Returns a list of two-element lists
-(define (enumerate s)
+(define (enumerate s)       ;we need to create a helper function here to keep track of the index
   ; BEGIN PROBLEM 15
-  'replace-this-line
-  )
+    (define (helper s index)    
+        (if (null? s) nil
+        
+        (cons (list index (car s))      ;construct a list where the first element is the index and the second is the first elemnt of the list s
+        (helper (cdr s)(+ index 1)))    ;recursive call the helper function again
+    
+        )
+      
+    )
+
+    (helper s 0) ;starts with index = 0 
+   
+)
+    
+
+
   ; END PROBLEM 15
+
 
 ;; Problem 16
 
+(2)(1)
 ;; Merge two lists LIST1 and LIST2 according to ORDERED? and return
 ;; the merged lists.
 (define (merge ordered? list1 list2)
   ; BEGIN PROBLEM 16
-  'replace-this-line
-  )
+    (cond
+        ((null? list1) list2)       ;if list1 is empty, then return list2
+        ((null? list2) list1)       ;if list2 is empty, then return list1
+        
+        (
+          (ordered? (car list1)(car list2))          ;check if the first element of list1 is in ascending order compare to first erlement of list2
+            (cons (car list1)(merge ordered? (cdr list1) list2)) ;if yes, then construct the first element of list1 and call the fucntion again
+        )
+
+        (
+          (cons (car list2)(merge ordered? list1 (cdr list2))) 
+        )
+    )  
+)
   ; END PROBLEM 16
+
+
+
+
 
 ;; Optional Problem 2
 
